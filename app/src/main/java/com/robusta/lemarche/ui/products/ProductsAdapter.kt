@@ -16,7 +16,7 @@ class ProductsAdapter : RecyclerView.Adapter<ProductViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-
+        holder.bindProductToViews(products.get(position))
     }
 
     override fun getItemCount(): Int = products.size

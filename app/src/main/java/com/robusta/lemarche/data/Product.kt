@@ -6,7 +6,7 @@ data class Product(
     val name: String,
     val imageUrl: String?,
     val price: String,
-    val rating: Double?,
+    val rating: Float?,
     val noOfReviews: Int?,
     val merchantName: String
 ) {
@@ -19,7 +19,7 @@ data class Product(
             val rating = productJson.optDouble("product_rating")
             val noOfReviews = productJson.optInt("product_no_of_raters")
             val merchantName = productJson.optString("product_merchant")
-            return Product(name, imageUrl, price, rating, noOfReviews, merchantName)
+            return Product(name, imageUrl, price, rating.toFloat(), noOfReviews, merchantName)
         }
     }
 }

@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
 
+    <ImageView
+        android:id="@+id/imageView_product_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cheese" />
+
+    <TextView
+        android:id="@+id/textView_product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_product_image"
+        app:layout_constraintTop_toTopOf="@+id/imageView_product_image" />
+
+    <RatingBar
+        android:id="@+id/ratingBar_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/textView_product_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView_product_name" />
+
+    <TextView
+        android:id="@+id/textView_product_no_of_reviewers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar_product"
+        app:layout_constraintEnd_toEndOf="@+id/textView_product_name"
+        app:layout_constraintStart_toEndOf="@+id/ratingBar_product"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar_product" />
+
+    <TextView
+        android:id="@+id/textView_product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="7.00 EGP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView_product_name"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar_product" />
 </androidx.constraintlayout.widget.ConstraintLayout>
