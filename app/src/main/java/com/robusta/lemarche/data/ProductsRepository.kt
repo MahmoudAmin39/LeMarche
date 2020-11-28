@@ -10,7 +10,7 @@ class ProductsRepository {
     init {
         val jsonArrayString = ProductsJson.ALL_PRODUCTS
         val productsJson = JSONArray(jsonArrayString)
-        for (index in 0..productsJson.length()) {
+        for (index in 0 until productsJson.length()) {
             val productJson = productsJson[index] as JSONObject
             val product = Product.fromJson(productJson)
             allProducts.add(product)

@@ -57,6 +57,7 @@ class ProductsSearchActivity : AppCompatActivity(), SearchView.OnQueryTextListen
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         val finalQuery = query ?: ""
+        hideKeyboard()
         viewModel.onQueryTextSubmit(finalQuery)
         return true
     }
