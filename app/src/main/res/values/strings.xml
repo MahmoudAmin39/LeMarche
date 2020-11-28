@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Le Marche</string>
+    <string name="search">Search products</string>
 </resources>
