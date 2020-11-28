@@ -51,6 +51,9 @@ class ProductsFragment : Fragment() {
                 }
             }
         })
+        
+        // Add a click listener for the FAB
+        fab_back_to_top.setOnClickListener { (recyclerView_products.layoutManager as LinearLayoutManager).scrollToPosition(0) }
 
         // Get the search term
         activityViewModel.getSearchTermLiveData()
