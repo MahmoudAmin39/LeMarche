@@ -33,24 +33,18 @@ class ProductsViewModel : ViewModel() {
     }
 
     fun onSearchQuerySubmit(queryTerm: String) {
-        if (queryTerm == "" || pageNo == 2) {
-            return
-        }
-        if (queryTerm == latestSearchQuery && pageNo == 1) {
-            // Pagination in-progress
-            pageNo = 2
+        if (isValidTerm(queryTerm)) {
+            if (queryTerm == latestSearchQuery && pageNo == 1) {
+                pageNo = 2
+            } else if (latestSearchQuery != queryTerm && pageNo == 2) {
+                pageNo = 1
+                showProgress()
+            }
             val products = productsRepository.queryProducts(queryTerm, pageNo)
             android.os.Handler(Looper.getMainLooper()).postDelayed({ showData(products) }, 300)
             latestSearchQuery = queryTerm
         } else {
-            showProgress()
-            if (isValidTerm(queryTerm)) {
-                val products = productsRepository.queryProducts(queryTerm, pageNo)
-                android.os.Handler(Looper.getMainLooper()).postDelayed({ showData(products) }, 300)
-                latestSearchQuery = queryTerm
-            } else {
-                android.os.Handler(Looper.getMainLooper()).postDelayed({ showError() }, 300)
-            }
+            android.os.Handler(Looper.getMainLooper()).postDelayed({ showError() }, 300)
         }
     }
 
