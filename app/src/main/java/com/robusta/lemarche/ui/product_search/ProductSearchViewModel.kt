@@ -8,9 +8,7 @@ class ProductSearchViewModel : ViewModel() {
 
     private val searchTerm: MutableLiveData<String> = MutableLiveData()
 
-    fun getSearchTermLiveData(): LiveData<String> {
-        return searchTerm
-    }
+    fun getSearchTermLiveData(): LiveData<String> = searchTerm
 
     fun onQueryTextSubmit(queryTerm: String) {
         searchTerm.postValue(queryTerm)

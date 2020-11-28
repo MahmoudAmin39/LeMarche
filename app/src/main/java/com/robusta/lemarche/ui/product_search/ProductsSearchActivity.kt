@@ -8,6 +8,7 @@ import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.robusta.lemarche.R
+import com.robusta.lemarche.ui.products.ProductsFragment
 
 class ProductsSearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
