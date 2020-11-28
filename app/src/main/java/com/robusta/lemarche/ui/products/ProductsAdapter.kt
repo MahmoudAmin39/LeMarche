@@ -8,6 +8,7 @@ import com.robusta.lemarche.data.Product
 
 class ProductsAdapter : RecyclerView.Adapter<ProductViewHolder>() {
 
+    lateinit var query: String
     private val products: MutableList<Product> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -16,7 +17,7 @@ class ProductsAdapter : RecyclerView.Adapter<ProductViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bindProductToViews(products.get(position))
+        holder.bindProductToViews(products[position], query)
     }
 
     override fun getItemCount(): Int = products.size

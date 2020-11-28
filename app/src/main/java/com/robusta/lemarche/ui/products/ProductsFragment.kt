@@ -61,7 +61,10 @@ class ProductsFragment : Fragment() {
 
         // Get the search term
         activityViewModel.getSearchTermLiveData()
-            .observe(viewLifecycleOwner, { fragmentViewModel.onSearchQuerySubmit(it) })
+            .observe(viewLifecycleOwner, {
+                productsAdapter.query = it
+                fragmentViewModel.onSearchQuerySubmit(it)
+            })
 
         // Observe for views changes
         fragmentViewModel.getProgressVisibilityData()
