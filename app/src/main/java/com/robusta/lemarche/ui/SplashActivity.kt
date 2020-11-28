@@ -12,6 +12,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        textView_splash_search.requestFocus()
         textView_splash_search.setOnClickListener {
             val intent = Intent(this, ProductsSearchActivity::class.java)
             startActivity(intent)

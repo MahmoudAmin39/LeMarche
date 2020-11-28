@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="Welcome to TDS\n(The dairy shop)"
+        android:text="@string/msg_welcome"
         android:textColor="#000"
         android:textSize="36sp"
         app:layout_constraintLeft_toLeftOf="parent"

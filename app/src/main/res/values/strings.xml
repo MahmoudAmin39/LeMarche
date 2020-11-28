@@ -2,4 +2,5 @@
     <string name="app_name">Le Marche</string>
     <string name="search">Search products</string>
     <string name="msg_error_empty_box">Sorry, your search did not return any known product.</string>
+    <string name="msg_welcome">Welcome to Le Marche\n(The dairy shop)</string>
 </resources>
