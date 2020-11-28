@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.robusta.lemarche.R
 import com.robusta.lemarche.ui.product_search.ProductSearchViewModel
 import kotlinx.android.synthetic.main.fragment_products.*
@@ -36,6 +37,20 @@ class ProductsFragment : Fragment() {
         productsAdapter = ProductsAdapter()
         recyclerView_products.layoutManager = LinearLayoutManager(activity)
         recyclerView_products.adapter = productsAdapter
+
+        // Implement the Back to top FAB logic
+        recyclerView_products.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val recyclerViewLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val firstItemPosition = recyclerViewLayoutManager.findFirstCompletelyVisibleItemPosition()
+                if (firstItemPosition != 0) {
+                    fab_back_to_top.show()
+                } else {
+                    fab_back_to_top.hide()
+                }
+            }
+        })
 
         // Get the search term
         activityViewModel.getSearchTermLiveData()
