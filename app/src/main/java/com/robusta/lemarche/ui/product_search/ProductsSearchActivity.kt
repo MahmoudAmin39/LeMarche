@@ -1,17 +1,24 @@
-package com.robusta.lemarche.ui
+package com.robusta.lemarche.ui.product_search
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.robusta.lemarche.R
 
 class ProductsSearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+
+    private val viewModel: ProductSearchViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products_search)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout_fragment_container, ProductsFragment())
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -48,6 +55,8 @@ class ProductsSearchActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
+        val finalQuery = query ?: ""
+        viewModel.onQueryTextSubmit(finalQuery)
         return true
     }
 
