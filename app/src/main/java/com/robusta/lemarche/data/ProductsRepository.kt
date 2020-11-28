@@ -18,12 +18,13 @@ class ProductsRepository {
     }
 
     fun queryProducts(queryTerm: String, pageNo: Int): List<Product> {
-        /*if (pageNo == 1) {
-            return allProducts.filter { it.name.contains(queryTerm) }.take(10)
+        if (pageNo == 1) {
+            return allProducts.filter { it.name.toLowerCase().contains(queryTerm.toLowerCase()) }
+                .take(10)
         } else if (pageNo == 2) {
-            return allProducts.filter { it.name.contains(queryTerm) }.take(20).takeLast(10)
+            return allProducts.filter { it.name.toLowerCase().contains(queryTerm.toLowerCase()) }
+                .take(20)
         }
-        return emptyList()*/
-        return allProducts
+        return emptyList()
     }
 }
