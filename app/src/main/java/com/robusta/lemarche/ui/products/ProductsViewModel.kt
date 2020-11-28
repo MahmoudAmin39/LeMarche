@@ -28,20 +28,29 @@ class ProductsViewModel : ViewModel() {
     fun getListViewVisibilityData(): LiveData<Int> = listViewVisibilityData
     fun getProductsData(): LiveData<List<Product>> = productsData
 
+    fun onSearchQuerySubmit() {
+        onSearchQuerySubmit(latestSearchQuery)
+    }
+
     fun onSearchQuerySubmit(queryTerm: String) {
         if (queryTerm == "" || pageNo == 2) {
             return
         }
         if (queryTerm == latestSearchQuery && pageNo == 1) {
+            // Pagination in-progress
             pageNo = 2
-        }
-        latestSearchQuery = queryTerm
-        showProgress()
-        if (isValidTerm(queryTerm)) {
             val products = productsRepository.queryProducts(queryTerm, pageNo)
             android.os.Handler(Looper.getMainLooper()).postDelayed({ showData(products) }, 300)
+            latestSearchQuery = queryTerm
         } else {
-            android.os.Handler(Looper.getMainLooper()).postDelayed({ showError() }, 300)
+            showProgress()
+            if (isValidTerm(queryTerm)) {
+                val products = productsRepository.queryProducts(queryTerm, pageNo)
+                android.os.Handler(Looper.getMainLooper()).postDelayed({ showData(products) }, 300)
+                latestSearchQuery = queryTerm
+            } else {
+                android.os.Handler(Looper.getMainLooper()).postDelayed({ showError() }, 300)
+            }
         }
     }
 

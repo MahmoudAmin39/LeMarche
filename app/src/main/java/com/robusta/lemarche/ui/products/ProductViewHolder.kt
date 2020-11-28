@@ -2,6 +2,8 @@ package com.robusta.lemarche.ui.products
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.robusta.lemarche.R
 import com.robusta.lemarche.data.Product
 import kotlinx.android.synthetic.main.item_product.view.*
 
@@ -13,6 +15,10 @@ class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.textView_product_no_of_reviewers.text = String.format("(%d)", product.noOfReviews)
         if (product.rating != null) {
             itemView.ratingBar_product.rating = product.rating
+        }
+
+        if(product.imageUrl != null) {
+            Glide.with(itemView).load(product.imageUrl).placeholder(R.drawable.ic_cheese).into(itemView.imageView_product_image)
         }
     }
 }

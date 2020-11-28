@@ -46,6 +46,10 @@ class ProductsFragment : Fragment() {
                 val firstItemPosition = recyclerViewLayoutManager.findFirstCompletelyVisibleItemPosition()
                 if (firstItemPosition != 0) {
                     fab_back_to_top.show()
+                    if (firstItemPosition == 6) {
+                        // Trigger the view model to request data again with the same search query
+                        fragmentViewModel.onSearchQuerySubmit()
+                    }
                 } else {
                     fab_back_to_top.hide()
                 }
