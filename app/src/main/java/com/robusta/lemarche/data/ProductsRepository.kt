@@ -1,19 +1,18 @@
 package com.robusta.lemarche.data
 
-import org.json.JSONArray
-import org.json.JSONObject
+class ProductsRepository private constructor() {
 
-class ProductsRepository {
+    var allProducts: List<Product> = mutableListOf()
 
-    private val allProducts: MutableList<Product> = mutableListOf()
+    companion object {
 
-    init {
-        val jsonArrayString = ProductsJson.ALL_PRODUCTS
-        val productsJson = JSONArray(jsonArrayString)
-        for (index in 0 until productsJson.length()) {
-            val productJson = productsJson[index] as JSONObject
-            val product = Product.fromJson(productJson)
-            allProducts.add(product)
+        private var instance: ProductsRepository? = null
+
+        fun get(): ProductsRepository {
+            if (instance == null) {
+                instance = ProductsRepository()
+            }
+            return instance!!
         }
     }
 

@@ -15,7 +15,7 @@ class ProductsViewModel : ViewModel() {
     private var latestSearchQuery = ""
 
     // Data Repository
-    private val productsRepository = ProductsRepository()
+    private val productsRepository = ProductsRepository.get()
 
     // LiveData
     private val progressVisibilityData: MutableLiveData<Int> = MutableLiveData()

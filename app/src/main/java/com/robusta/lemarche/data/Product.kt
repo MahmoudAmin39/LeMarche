@@ -1,25 +1,12 @@
 package com.robusta.lemarche.data
 
-import org.json.JSONObject
+import com.google.gson.annotations.SerializedName
 
 data class Product(
-    val name: String,
-    val imageUrl: String?,
-    val price: String,
-    val rating: Float?,
-    val noOfReviews: Int?,
-    val merchantName: String
-) {
-    companion object {
-
-        fun fromJson(productJson: JSONObject): Product {
-            val name = productJson.optString("product_name")
-            val imageUrl = productJson.optString("product_image_url")
-            val price = productJson.optString("product_price")
-            val rating = productJson.optDouble("product_rating")
-            val noOfReviews = productJson.optInt("product_no_of_raters")
-            val merchantName = productJson.optString("product_merchant")
-            return Product(name, imageUrl, price, rating.toFloat(), noOfReviews, merchantName)
-        }
-    }
-}
+    @SerializedName("product_name") val name: String,
+    @SerializedName("product_image_url") val imageUrl: String?,
+    @SerializedName("product_price") val price: String,
+    @SerializedName("product_rating") val rating: Float?,
+    @SerializedName("product_no_of_raters") val noOfReviews: Int?,
+    @SerializedName("product_merchant") val merchantName: String
+)
