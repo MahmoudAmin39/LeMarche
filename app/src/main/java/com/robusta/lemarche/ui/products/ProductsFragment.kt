@@ -43,7 +43,8 @@ class ProductsFragment : Fragment() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val recyclerViewLayoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val firstItemPosition = recyclerViewLayoutManager.findFirstCompletelyVisibleItemPosition()
+                val firstItemPosition =
+                    recyclerViewLayoutManager.findFirstCompletelyVisibleItemPosition()
                 if (firstItemPosition != 0) {
                     fab_back_to_top.show()
                     if (firstItemPosition == 6) {
@@ -55,9 +56,13 @@ class ProductsFragment : Fragment() {
                 }
             }
         })
-        
+
         // Add a click listener for the FAB
-        fab_back_to_top.setOnClickListener { (recyclerView_products.layoutManager as LinearLayoutManager).scrollToPosition(0) }
+        fab_back_to_top.setOnClickListener {
+            (recyclerView_products.layoutManager as LinearLayoutManager).scrollToPosition(
+                0
+            )
+        }
 
         // Get the search term
         activityViewModel.getSearchTermLiveData()
@@ -73,6 +78,8 @@ class ProductsFragment : Fragment() {
             .observe(viewLifecycleOwner, { recyclerView_products.visibility = it })
         fragmentViewModel.getErrorVisibilityData()
             .observe(viewLifecycleOwner, { layout_errorView.visibility = it })
+        fragmentViewModel.getFabVisibilityData()
+            .observe(viewLifecycleOwner, { fab_back_to_top.visibility = it })
 
         // Observe for data changes
         fragmentViewModel.getProductsData().observe(viewLifecycleOwner, {

@@ -21,11 +21,13 @@ class ProductsViewModel : ViewModel() {
     private val progressVisibilityData: MutableLiveData<Int> = MutableLiveData()
     private val errorVisibilityData: MutableLiveData<Int> = MutableLiveData()
     private val listViewVisibilityData: MutableLiveData<Int> = MutableLiveData()
+    private val fabVisibilityData: MutableLiveData<Int> = MutableLiveData()
     private val productsData: MutableLiveData<List<Product>> = MutableLiveData()
 
     fun getProgressVisibilityData(): LiveData<Int> = progressVisibilityData
     fun getErrorVisibilityData(): LiveData<Int> = errorVisibilityData
     fun getListViewVisibilityData(): LiveData<Int> = listViewVisibilityData
+    fun getFabVisibilityData(): LiveData<Int> = fabVisibilityData
     fun getProductsData(): LiveData<List<Product>> = productsData
 
     fun onSearchQuerySubmit() {
@@ -38,13 +40,18 @@ class ProductsViewModel : ViewModel() {
                 pageNo = 2
             } else if (latestSearchQuery != queryTerm && pageNo == 2) {
                 pageNo = 1
+                fabVisibilityData.value = GONE
                 showProgress()
             }
             val products = productsRepository.queryProducts(queryTerm, pageNo)
             android.os.Handler(Looper.getMainLooper()).postDelayed({ showData(products) }, 300)
             latestSearchQuery = queryTerm
         } else {
-            android.os.Handler(Looper.getMainLooper()).postDelayed({ showError() }, 300)
+            showProgress()
+            android.os.Handler(Looper.getMainLooper()).postDelayed({
+                fabVisibilityData.value = GONE
+                showError()
+            }, 300)
         }
     }
 
